@@ -1,26 +1,28 @@
-# Análise de Grafos Sociais: O Modelo Facebook 🌐
+Facebook Graph: Teoria, Infraestrutura e Implementação 🌐
+Este repositório contém um estudo aprofundado sobre como a Teoria dos Grafos é a espinha dorsal do Facebook (Meta), cobrindo desde a modelação matemática até as tecnologias de backend como TAO e GraphQL.
 
-Este projeto apresenta um estudo sobre a aplicação da **Teoria dos Grafos** no contexto das redes sociais, focando-se na estrutura e funcionalidade do "Grafo Social" e do "Graph Search" do Facebook.
+📌 Visão Geral
+O projeto analisa o "Grafo Social" — um termo popularizado por Mark Zuckerberg em 2007 — que representa a rede global de pessoas e as suas infinitas conexões e interações.
 
-## 📌 Contexto Histórico
-O termo "Grafo Social" foi utilizado pela primeira vez em 1964, mas ganhou popularidade global em 2007, após a conferência de desenvolvedores apresentada por Mark Zuckerberg.
+🏗️ Arquitetura e Tecnologias (Meta Stack)
+Com base na análise técnica, destacam-se três pilares que sustentam o grafo do Facebook:TAO (The Associations and Objects):
+* O serviço de cache distribuído que o Facebook utiliza para gerenciar o grafo social.
+* Otimiza a leitura e escrita de biliões de objetos (nós) e associações (arestas) em tempo real.
+GraphQL:
+Linguagem de consulta de dados criada para lidar com a natureza hierárquica e interconectada dos grafos, permitindo que o cliente peça apenas os dados necessários de cada nó.
+Graph API:
+* A interface principal que permite que aplicações externas interajam com os dados da rede (utilizadores, fotos, posts) através de uma estrutura de grafos.
 
-## 🎓 Conceitos Fundamentais
-No ecossistema do Facebook, o Grafo Social é a representação de todas as interações dentro da plataforma: amizades, "gostos", comentários e partilhas.
+🎓 Modelação Teórica
+Matematicamente, a rede é tratada como um grafo $G = (V, A):
+* Vértices (V): Representam entidades (Utilizadores, Páginas, Grupos).
+* Arestas (A): Representam relações (Amizade, Check-in, Curtida). No Facebook, a amizade é uma aresta não-direcionada (recíproca), enquanto um "Seguir" pode ser uma aresta direcionada (dígrafo).
 
-### Definição Matemática
-Um Grafo Social pode ser definido como um conjunto $G = (V, A)$:
-- **V (Vértices):** Representam os perfis, páginas ou utilizadores.
-- **A (Arestas):** Representam as ligações e interações entre os utilizadores.
+Métricas Analisadas:
+* Grau do Vértice: Popularidade/Conectividade de um utilizador.
+* Componentes Conectados: Identificação de sub-redes e grupos de interesse.
+* Caminhos Mínimos: A lógica por trás do "Sugestões de Amizade" e do conceito de "seis graus de separação".
 
-### Características da Rede:
-- **Reciprocidade:** Como a amizade no Facebook exige aceitação mútua, o grafo é considerado um **par ordenado** onde a relação é bidirecional.
-- **Grau do Vértice:** Representa o número de conexões (amigos) que um utilizador possui.
-- **Passeios e Caminhos:** Representam a ligação entre utilizadores através de amigos comuns. A ausência de caminhos indica componentes desconectados na rede.
-
-## 🔍 Graph Search (Busca Semântica)
-Lançado em 2013, o **Graph Search** revolucionou a forma de pesquisar na rede:
-- **Diferencial:** Ao contrário dos motores de busca tradicionais (como o Google), o Graph Search é um motor de **busca semântica**.
-- **Funcionamento:** Os resultados são baseados nas relações e interesses dos amigos do utilizador, respeitando sempre as definições de privacidade.
-
----
+🔍 Graph Search & Busca Semântica
+O projeto detalha o funcionamento do motor de busca semântica, que percorre o grafo para entregar resultados contextuais.
+* Exemplo: Ao pesquisar "Amigos que gostam de Sushi em NY", o algoritmo não busca apenas palavras-chave, ele faz um percurso de vértices (Amigo -> Gosto -> Sushi -> Localização) para encontrar a interseção exata dos dados.
